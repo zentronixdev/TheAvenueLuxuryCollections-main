@@ -27,17 +27,20 @@ jobs:
         with:
           node-version: 20
           cache: npm
+          cache-dependency-path: TheAvenueLuxuryCollections-main/package-lock.json
 
       - name: Install dependencies
+        working-directory: TheAvenueLuxuryCollections-main
         run: npm ci
 
       - name: Build
+        working-directory: TheAvenueLuxuryCollections-main
         run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: TheAvenueLuxuryCollections-main/dist
 
   deploy:
     needs: build
